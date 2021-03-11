@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6 p-3 text-center">
+      <%= form_tag movies_path, method: :get  do %>
+        <%= text_field_tag :query, "", class: "form-control", placeholder: "Find a movie" %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <h3>You've searched for: <%= params[:query] %> </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <div id="movies">
+        <% @results.each do |res| %>
+          <h4>
+            <%= res.searchable.title %>
+            - <%= res.searchable.type_name%>
+          </h4>
+          <p>
+            <%= res.searchable.synopsis %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
